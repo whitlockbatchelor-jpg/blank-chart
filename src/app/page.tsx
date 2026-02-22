@@ -3,7 +3,19 @@
 import { useState } from "react";
 import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
+import { IdeaChat } from "@/components/IdeaChat";
 import { ideas } from "@/lib/ideas";
+
+interface IdeaFormData {
+  name: string;
+  location: string;
+  destination: string;
+  country: string;
+  pitch: string;
+  activities: string;
+  beenThere: string;
+  notes: string;
+}
 
 const activities = [
   "Kayak",
@@ -66,6 +78,7 @@ export default function HomePage() {
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submittedData, setSubmittedData] = useState<IdeaFormData | null>(null);
 
   const toggleActivity = (activity: string) => {
     setSelectedActivities((prev) =>
@@ -83,20 +96,60 @@ export default function HomePage() {
     const formData = new FormData(form);
     formData.set("activities", selectedActivities.join(", "));
 
-    try {
-      await fetch("https://formspree.io/f/xlgwpkqg", {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
-      setFormSubmitted(true);
-    } catch {
-      // Still show success — Formspree may reject CORS in dev
-      setFormSubmitted(true);
-    } finally {
-      setSubmitting(false);
-    }
+    // Capture form data for the chat
+    const capturedData: IdeaFormData = {
+      name: (form.elements.namedItem("name") as HTMLInputElement)?.value || "",
+      location: (form.elements.namedItem("location") as HTMLInputElement)?.value || "",
+      destination: (form.elements.namedItem("destination") as HTMLInputElement)?.value || "",
+      country: (form.elements.namedItem("country") as HTMLInputElement)?.value || "",
+      pitch: (form.elements.namedItem("pitch") as HTMLTextAreaElement)?.value || "",
+      activities: selectedActivities.join(", "),
+      beenThere: (form.elements.namedItem("been_there") as HTMLSelectElement)?.value || "",
+      notes: (form.elements.namedItem("notes") as HTMLTextAreaElement)?.value || "",
+    };
+
+    // Send to Formspree in the background
+    fetch("https://formspree.io/f/xlgwpkqg", {
+      method: "POST",
+      body: formData,
+      headers: { Accept: "application/json" },
+    }).catch(() => {});
+
+    setSubmittedData(capturedData);
+    setFormSubmitted(true);
+    setSubmitting(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  if (formSubmitted && submittedData) {
+    return (
+      <>
+        {/* Chat Hero */}
+        <section className="relative flex min-h-[40vh] items-end overflow-hidden pb-16">
+          <div className="absolute inset-0 bg-gradient-to-b from-navy via-slate/40 to-ink" />
+          <div className="relative z-10 mx-auto max-w-4xl px-6">
+            <FadeIn>
+              <span className="font-mono text-[10px] font-light tracking-[4px] uppercase text-copper">
+                Idea Submitted
+              </span>
+              <h1 className="mt-4 font-display text-3xl font-normal text-snow sm:text-4xl md:text-5xl">
+                Let&rsquo;s explore {submittedData.destination}, {submittedData.name.split(" ")[0]}.
+              </h1>
+            </FadeIn>
+          </div>
+        </section>
+
+        {/* Chat Interface */}
+        <section className="bg-ink py-16 md:py-24">
+          <div className="mx-auto max-w-2xl px-6">
+            <FadeIn>
+              <IdeaChat formData={submittedData} />
+            </FadeIn>
+          </div>
+        </section>
+      </>
+    );
+  }
 
   return (
     <>
@@ -239,20 +292,7 @@ export default function HomePage() {
             </p>
           </FadeIn>
 
-          {formSubmitted ? (
-            <FadeIn>
-              <div className="mt-12 border border-copper/20 bg-copper/5 p-8 text-center">
-                <h3 className="font-display text-2xl font-normal text-snow">
-                  Idea received.
-                </h3>
-                <p className="mt-3 font-body text-sm font-light text-cream/60">
-                  We&rsquo;ll review your submission and reach out if we start
-                  building it. Thanks for charting something new.
-                </p>
-              </div>
-            </FadeIn>
-          ) : (
-            <form onSubmit={handleSubmit} className="mt-12 space-y-10">
+          <form onSubmit={handleSubmit} className="mt-12 space-y-10">
               {/* Name */}
               <FadeIn>
                 <div>
@@ -421,7 +461,6 @@ export default function HomePage() {
                 </button>
               </FadeIn>
             </form>
-          )}
         </div>
       </section>
 
