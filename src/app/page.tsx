@@ -84,7 +84,7 @@ export default function HomePage() {
     formData.set("activities", selectedActivities.join(", "));
 
     try {
-      await fetch("https://formspree.io/f/xpwdgbkl", {
+      await fetch("https://formspree.io/f/xlgwpkqg", {
         method: "POST",
         body: formData,
         headers: { Accept: "application/json" },
