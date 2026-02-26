@@ -8,6 +8,8 @@ export interface Idea {
   location: string;
   tags: string[];
   status: "New" | "Under Review" | "In Development" | "Now a Keel Ridge Destination";
+  image?: string;
+  imageAlt?: string;
 }
 
 export const ideas: Idea[] = [
@@ -22,6 +24,7 @@ export const ideas: Idea[] = [
     location: "Copenhagen",
     tags: ["Kayak", "Sailing"],
     status: "Under Review",
+    // No photo available — placeholder treatment
   },
   {
     slug: "oman-wadi-canyoneering",
@@ -34,6 +37,7 @@ export const ideas: Idea[] = [
     location: "Dubai",
     tags: ["Trek", "Sailing"],
     status: "New",
+    // No photo available — placeholder treatment
   },
   {
     slug: "svalbard-ski-sail",
@@ -46,6 +50,8 @@ export const ideas: Idea[] = [
     location: "Troms\u00f8",
     tags: ["Ski", "Sailing"],
     status: "In Development",
+    image: "/images/destinations/japan/bootpack-lone-tree-whiteout.jpg",
+    imageAlt: "Skiers bootpacking through a whiteout with a lone bent tree — arctic snow and ski vibes",
   },
   {
     slug: "madagascar-mtb-tsingy",
@@ -58,6 +64,7 @@ export const ideas: Idea[] = [
     location: "Lisbon",
     tags: ["MTB", "Kayak"],
     status: "New",
+    // No photo available — placeholder treatment
   },
   {
     slug: "wakhan-corridor",
@@ -70,6 +77,8 @@ export const ideas: Idea[] = [
     location: "London",
     tags: ["Trek", "Mountaineering"],
     status: "Under Review",
+    image: "/images/destinations/shasta/bootpack-ski-carry-ridge.jpg",
+    imageAlt: "Mountaineer bootpacking a ridge with skis on back — remote high-altitude trekking",
   },
   {
     slug: "east-greenland-scoresby-sound",
@@ -82,5 +91,7 @@ export const ideas: Idea[] = [
     location: "Reykjav\u00edk",
     tags: ["Kayak", "Trek"],
     status: "New",
+    image: "/images/destinations/new-zealand/summit-bowl-wind-texture.jpg",
+    imageAlt: "Wind-carved snow bowl texture — raw, arctic-feeling landscape",
   },
 ];

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { FadeIn } from "@/components/FadeIn";
 import { IdeaChat } from "@/components/IdeaChat";
 import { ideas } from "@/lib/ideas";
@@ -71,6 +72,63 @@ function StatusBadge({ status }: { status: string }) {
     >
       {status}
     </span>
+  );
+}
+
+function TopoPlaceholder() {
+  return (
+    <div className="relative h-[200px] sm:h-[220px] overflow-hidden bg-ink">
+      <svg
+        className="absolute inset-0 w-full h-full opacity-[0.07]"
+        viewBox="0 0 400 200"
+        preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 140 Q50 120 100 130 T200 110 T300 125 T400 105"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 120 Q60 100 120 115 T240 95 T360 108 T400 88"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 100 Q70 80 140 95 T280 75 T400 70"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 80 Q80 55 160 70 T320 50 T400 55"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 60 Q90 40 180 55 T360 35 T400 40"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 160 Q40 145 80 155 T160 140 T240 148 T320 135 T400 125"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 175 Q35 165 70 172 T140 160 T210 165 T280 155 T350 150 T400 145"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+      </svg>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-deep/50" />
+    </div>
   );
 }
 
@@ -155,8 +213,21 @@ export default function HomePage() {
     <>
       {/* ── Hero ── */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy via-deep to-ink" />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent" />
+        {/* Background photo */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/destinations/new-zealand/alpine-lake-sunset-aerial.jpg"
+            alt="Turquoise glacial lake from above at golden hour"
+            fill
+            priority
+            className="object-cover opacity-70 saturate-[0.7]"
+            sizes="100vw"
+          />
+        </div>
+        {/* Gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[rgba(15,17,20,0.6)] via-[rgba(15,17,20,0.4)] to-[rgba(15,17,20,0.95)]" />
+        {/* Extra mobile overlay for text legibility */}
+        <div className="absolute inset-0 bg-ink/20 md:bg-transparent" />
         <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
           <FadeIn delay={0.2}>
             <span className="font-mono text-[10px] font-light tracking-[4px] uppercase text-copper">
@@ -236,37 +307,56 @@ export default function HomePage() {
               <FadeIn key={idea.slug} delay={i * 0.1}>
                 <Link
                   href={`/ideas/${idea.slug}`}
-                  className="group block border border-white/5 bg-deep/50 p-6 transition-all hover:border-copper/20 hover:bg-deep"
+                  className="group block overflow-hidden border border-white/5 bg-deep/50 transition-all hover:border-copper/20 hover:bg-deep"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="font-mono text-[10px] font-light tracking-[2px] uppercase text-sea">
-                      {idea.region}
-                    </span>
-                    <StatusBadge status={idea.status} />
-                  </div>
-                  <h3 className="mt-4 font-display text-xl font-normal text-snow group-hover:text-copper transition-colors">
-                    {idea.title}
-                  </h3>
-                  <p className="mt-2 font-body text-[11px] font-light tracking-[1px] uppercase text-copper/70">
-                    {idea.destination}
-                  </p>
-                  <p className="mt-3 font-body text-sm font-light leading-relaxed text-cream/50 line-clamp-3">
-                    {idea.pitch}
-                  </p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {idea.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="border border-white/10 px-2.5 py-1 font-mono text-[9px] font-light tracking-[2px] uppercase text-cream/40"
-                      >
-                        {tag}
+                  {/* Card image or placeholder */}
+                  {idea.image ? (
+                    <div className="relative h-[200px] sm:h-[220px] overflow-hidden">
+                      <Image
+                        src={idea.image}
+                        alt={idea.imageAlt || `${idea.destination} expedition photo`}
+                        fill
+                        className="object-cover transition-transform duration-[400ms] ease-out group-hover:scale-[1.03]"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-deep/80 to-transparent" />
+                    </div>
+                  ) : (
+                    <TopoPlaceholder />
+                  )}
+
+                  {/* Card content */}
+                  <div className="p-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="font-mono text-[10px] font-light tracking-[2px] uppercase text-sea">
+                        {idea.region}
                       </span>
-                    ))}
-                  </div>
-                  <div className="mt-4 border-t border-white/5 pt-4">
-                    <span className="font-body text-xs font-light text-cream/30">
-                      {idea.submitter}, {idea.location}
-                    </span>
+                      <StatusBadge status={idea.status} />
+                    </div>
+                    <h3 className="mt-4 font-display text-xl font-normal text-snow group-hover:text-copper transition-colors">
+                      {idea.title}
+                    </h3>
+                    <p className="mt-2 font-body text-[11px] font-light tracking-[1px] uppercase text-copper/70">
+                      {idea.destination}
+                    </p>
+                    <p className="mt-3 font-body text-sm font-light leading-relaxed text-cream/50 line-clamp-3">
+                      {idea.pitch}
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {idea.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="border border-white/10 px-2.5 py-1 font-mono text-[9px] font-light tracking-[2px] uppercase text-cream/40"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="mt-4 border-t border-white/5 pt-4">
+                      <span className="font-body text-xs font-light text-cream/30">
+                        {idea.submitter}, {idea.location}
+                      </span>
+                    </div>
                   </div>
                 </Link>
               </FadeIn>

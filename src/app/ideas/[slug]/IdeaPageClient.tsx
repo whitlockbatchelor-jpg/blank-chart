@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { FadeIn } from "@/components/FadeIn";
 import type { Idea } from "@/lib/ideas";
 
@@ -22,12 +23,89 @@ function StatusBadge({ status }: { status: string }) {
   );
 }
 
+function TopoPlaceholderHero() {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      <svg
+        className="absolute inset-0 w-full h-full opacity-[0.05]"
+        viewBox="0 0 800 400"
+        preserveAspectRatio="xMidYMid slice"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 280 Q100 240 200 260 T400 220 T600 250 T800 210"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 240 Q120 200 240 230 T480 190 T720 216 T800 176"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 200 Q140 160 280 190 T560 150 T800 140"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 160 Q160 110 320 140 T640 100 T800 110"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 120 Q180 80 360 110 T720 70 T800 80"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 320 Q80 290 160 310 T320 280 T480 296 T640 270 T800 250"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+        <path
+          d="M0 350 Q70 330 140 345 T280 320 T420 330 T560 310 T700 300 T800 290"
+          fill="none"
+          stroke="#C47D4E"
+          strokeWidth="0.8"
+        />
+      </svg>
+    </div>
+  );
+}
+
 export function IdeaPageClient({ idea }: { idea: Idea }) {
   return (
     <>
       {/* Hero */}
       <section className="relative flex min-h-[60vh] items-end overflow-hidden pb-24">
-        <div className="absolute inset-0 bg-gradient-to-b from-navy via-slate/40 to-ink" />
+        {/* Background — photo or topo placeholder */}
+        {idea.image ? (
+          <>
+            <div className="absolute inset-0">
+              <Image
+                src={idea.image}
+                alt={idea.imageAlt || `${idea.destination} expedition photo`}
+                fill
+                priority
+                className="object-cover"
+                sizes="100vw"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-[rgba(15,17,20,0.5)] via-[rgba(15,17,20,0.4)] to-[rgba(15,17,20,0.95)]" />
+          </>
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-b from-navy via-slate/40 to-ink" />
+            <TopoPlaceholderHero />
+          </>
+        )}
+
         <div className="relative z-10 mx-auto max-w-4xl px-6">
           <FadeIn>
             <Link
