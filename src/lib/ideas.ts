@@ -94,4 +94,18 @@ export const ideas: Idea[] = [
     image: "/images/destinations/new-zealand/summit-bowl-wind-texture.jpg",
     imageAlt: "Wind-carved snow bowl texture — raw, arctic-feeling landscape",
   },
+  {
+    slug: "ortler-ski-tour",
+    destination: "Ortler Range",
+    title: "Ortler Haute Route by Ski",
+    region: "South Tyrol",
+    pitch:
+      "A hut-to-hut ski touring traverse through the Ortler Alps \u2014 Italy\u2019s highest range outside Mont Blanc. Skin up glaciers at dawn, ski 2,000m descents, sleep in rifugios built into the rock. Rifugio Pizzini to Rifugio Branca, guided by International Alpine Guides who know every crevasse and couloir.",
+    submitter: "Whit B.",
+    location: "Charleston",
+    tags: ["Ski", "Mountaineering"],
+    status: "In Development",
+    image: "/images/destinations/ortler/skier-glacier-valley-overlook.jpg",
+    imageAlt: "Skier with red pack overlooking a vast glacier valley in the Ortler Alps, bluebird sky",
+  },
 ];
