@@ -184,21 +184,55 @@ export function IdeaPageClient({ idea }: { idea: Idea }) {
               </p>
             </div>
           </FadeIn>
+        </div>
+      </section>
 
-          {/* CTA */}
-          <FadeIn delay={0.3}>
-            <div className="mt-16 text-center">
-              <p className="font-display text-xl font-normal text-cream/80 sm:text-2xl">
-                Inspired? Submit your own idea.
-              </p>
-              <Link
-                href="/#submit"
-                className="mt-6 inline-flex items-center gap-2 border border-copper/30 px-8 py-3.5 font-body text-[11px] font-normal tracking-[3px] uppercase text-copper transition-all hover:border-copper hover:bg-copper/10"
-              >
-                Submit an Idea
-                <span className="text-sm">&rarr;</span>
-              </Link>
+      {/* Photo Gallery */}
+      {idea.gallery && idea.gallery.length > 0 && (
+        <section className="bg-deep py-16 md:py-24">
+          <div className="mx-auto max-w-7xl px-6">
+            <FadeIn>
+              <span className="font-mono text-[10px] font-light tracking-[4px] uppercase text-copper">
+                From the Field
+              </span>
+              <h2 className="mt-4 font-display text-2xl font-normal text-snow sm:text-3xl">
+                Photos from this expedition
+              </h2>
+            </FadeIn>
+            <div className="mt-12 columns-1 gap-4 sm:columns-2 lg:columns-3">
+              {idea.gallery.map((photo, i) => (
+                <FadeIn key={photo.src} delay={i * 0.08}>
+                  <div className="mb-4 overflow-hidden break-inside-avoid">
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      width={800}
+                      height={600}
+                      className="w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
+                </FadeIn>
+              ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA */}
+      <section className="bg-ink py-16 md:py-24">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <FadeIn>
+            <p className="font-display text-xl font-normal text-cream/80 sm:text-2xl">
+              Inspired? Submit your own idea.
+            </p>
+            <Link
+              href="/#submit"
+              className="mt-6 inline-flex items-center gap-2 border border-copper/30 px-8 py-3.5 font-body text-[11px] font-normal tracking-[3px] uppercase text-copper transition-all hover:border-copper hover:bg-copper/10"
+            >
+              Submit an Idea
+              <span className="text-sm">&rarr;</span>
+            </Link>
           </FadeIn>
         </div>
       </section>

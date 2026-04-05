@@ -1,3 +1,8 @@
+export interface GalleryImage {
+  src: string;
+  alt: string;
+}
+
 export interface Idea {
   slug: string;
   destination: string;
@@ -10,6 +15,7 @@ export interface Idea {
   status: "New" | "Under Review" | "In Development" | "Now a Keel Ridge Destination";
   image?: string;
   imageAlt?: string;
+  gallery?: GalleryImage[];
 }
 
 export const ideas: Idea[] = [
@@ -107,5 +113,16 @@ export const ideas: Idea[] = [
     status: "In Development",
     image: "/images/destinations/ortler/skier-glacier-valley-overlook.jpg",
     imageAlt: "Skier with red pack overlooking a vast glacier valley in the Ortler Alps, bluebird sky",
+    gallery: [
+      { src: "/images/destinations/ortler/switchback-skin-track-glacier.jpg", alt: "Switchback skin track carved up a steep glacier face in the Ortler Range" },
+      { src: "/images/destinations/ortler/two-skiers-glacier-shadow.jpg", alt: "Two skiers crossing a glacier beneath dramatic mountain shadows" },
+      { src: "/images/destinations/ortler/rifugio-branca-skis.jpg", alt: "Rifugio Cesare Branca at 2493m with skis lined up outside" },
+      { src: "/images/destinations/ortler/rifugio-pizzini-frattola.jpg", alt: "Rifugio Pizzini-Frattola at 2706m with red shutters and ski rack" },
+      { src: "/images/destinations/ortler/tea-mountain-panorama.jpg", alt: "Glass of tea on a wooden table with Ortler mountain panorama behind" },
+      { src: "/images/destinations/ortler/alpenglow-peak-dawn.jpg", alt: "Alpenglow on an Ortler peak at dawn with Austrian flag" },
+      { src: "/images/destinations/ortler/skinning-toward-mountains.jpg", alt: "Skier skinning toward snow-covered peaks under dramatic clouds" },
+      { src: "/images/destinations/ortler/approach-mountain-hut.jpg", alt: "Approaching a mountain hut on a skinning track, overcast skies" },
+      { src: "/images/destinations/ortler/sunset-valley-hut-terrace.jpg", alt: "Sunset over the valley from a mountain hut terrace" },
+    ],
   },
 ];
