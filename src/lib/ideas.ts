@@ -30,7 +30,15 @@ export const ideas: Idea[] = [
     location: "Copenhagen",
     tags: ["Kayak", "Sailing"],
     status: "Under Review",
-    // No photo available — placeholder treatment
+    image: "/images/destinations/faroe-islands/dramatic-sea-cliffs.jpeg",
+    imageAlt: "Dramatic sea cliffs rising from the ocean with crashing waves",
+    gallery: [
+      { src: "/images/destinations/faroe-islands/rocky-coastline-turquoise-water.jpeg", alt: "Rocky coastline with turquoise water along volcanic shores" },
+      { src: "/images/destinations/faroe-islands/ocean-waves-volcanic-coast.jpeg", alt: "Ocean waves breaking against a volcanic coastline" },
+      { src: "/images/destinations/faroe-islands/rugged-island-coastline.jpeg", alt: "Rugged island coastline viewed from the water" },
+      { src: "/images/destinations/faroe-islands/sea-cave-coastal-cliffs.jpeg", alt: "Sea cave and coastal cliffs carved by Atlantic waves" },
+      { src: "/images/destinations/faroe-islands/sunset-over-north-atlantic.jpeg", alt: "Golden sunset over the North Atlantic from a remote beach" },
+    ],
   },
   {
     slug: "oman-wadi-canyoneering",
@@ -43,7 +51,14 @@ export const ideas: Idea[] = [
     location: "Dubai",
     tags: ["Trek", "Sailing"],
     status: "New",
-    // No photo available — placeholder treatment
+    image: "/images/destinations/oman/desert-mountain-landscape.jpeg",
+    imageAlt: "Desert mountain landscape with layered ridges stretching to the horizon",
+    gallery: [
+      { src: "/images/destinations/oman/hajar-mountains-wadi.jpeg", alt: "Hajar Mountains wadi with deep canyon walls and dry riverbed" },
+      { src: "/images/destinations/oman/canyon-desert-terrain.jpeg", alt: "Canyon cutting through arid desert terrain" },
+      { src: "/images/destinations/oman/sandstone-formations.jpeg", alt: "Sandstone formations sculpted by wind and time" },
+      { src: "/images/destinations/oman/coastal-desert-cliffs.jpeg", alt: "Coastal desert cliffs meeting the Arabian Sea" },
+    ],
   },
   {
     slug: "svalbard-ski-sail",
@@ -56,8 +71,15 @@ export const ideas: Idea[] = [
     location: "Troms\u00f8",
     tags: ["Ski", "Sailing"],
     status: "In Development",
-    image: "/images/destinations/japan/bootpack-lone-tree-whiteout.jpg",
-    imageAlt: "Skiers bootpacking through a whiteout with a lone bent tree — arctic snow and ski vibes",
+    image: "/images/destinations/svalbard/glacier-ice-formations.jpeg",
+    imageAlt: "Glacier ice formations in an Arctic fjord landscape",
+    gallery: [
+      { src: "/images/destinations/svalbard/ski-touring-snow-ridge.jpeg", alt: "Ski touring along a snow ridge with mountain panorama" },
+      { src: "/images/destinations/svalbard/powder-descent-mountain.jpeg", alt: "Powder descent through deep mountain snow" },
+      { src: "/images/destinations/svalbard/arctic-glacier-landscape.jpeg", alt: "Arctic glacier landscape stretching to the horizon" },
+      { src: "/images/destinations/svalbard/fjord-glacier-panorama.jpeg", alt: "Panoramic view of a glacier meeting a fjord" },
+      { src: "/images/destinations/svalbard/midnight-sun-snowfield.jpeg", alt: "Snowfield bathed in midnight sun light" },
+    ],
   },
   {
     slug: "madagascar-mtb-tsingy",
@@ -70,7 +92,14 @@ export const ideas: Idea[] = [
     location: "Lisbon",
     tags: ["MTB", "Kayak"],
     status: "New",
-    // No photo available — placeholder treatment
+    image: "/images/destinations/madagascar/forest-trail-expedition.jpeg",
+    imageAlt: "Forest trail winding through lush wilderness on an expedition",
+    gallery: [
+      { src: "/images/destinations/madagascar/lush-valley-overlook.jpeg", alt: "Overlook of a lush green valley from the trail" },
+      { src: "/images/destinations/madagascar/trekking-through-wilderness.jpeg", alt: "Trekking through remote wilderness terrain" },
+      { src: "/images/destinations/madagascar/ridgeline-trail-views.jpeg", alt: "Ridgeline trail with sweeping views of the landscape below" },
+      { src: "/images/destinations/madagascar/coastal-outrigger-waters.jpeg", alt: "Coastal waters where traditional outrigger boats sail" },
+    ],
   },
   {
     slug: "wakhan-corridor",
@@ -83,8 +112,14 @@ export const ideas: Idea[] = [
     location: "London",
     tags: ["Trek", "Mountaineering"],
     status: "Under Review",
-    image: "/images/destinations/shasta/bootpack-ski-carry-ridge.jpg",
-    imageAlt: "Mountaineer bootpacking a ridge with skis on back — remote high-altitude trekking",
+    image: "/images/destinations/wakhan/high-altitude-trek-approach.jpeg",
+    imageAlt: "High altitude trek approach through remote mountain terrain",
+    gallery: [
+      { src: "/images/destinations/wakhan/mountain-pass-trekking.jpeg", alt: "Trekking through a high mountain pass with peaks on both sides" },
+      { src: "/images/destinations/wakhan/remote-valley-expedition.jpeg", alt: "Remote valley expedition deep in the mountain wilderness" },
+      { src: "/images/destinations/wakhan/glacier-moraine-crossing.jpeg", alt: "Crossing a glacier moraine with crevassed ice" },
+      { src: "/images/destinations/wakhan/snowfield-peak-panorama.jpeg", alt: "Snowfield panorama with unclimbed peaks in the distance" },
+    ],
   },
   {
     slug: "east-greenland-scoresby-sound",
@@ -97,8 +132,15 @@ export const ideas: Idea[] = [
     location: "Reykjav\u00edk",
     tags: ["Kayak", "Trek"],
     status: "New",
-    image: "/images/destinations/new-zealand/summit-bowl-wind-texture.jpg",
-    imageAlt: "Wind-carved snow bowl texture — raw, arctic-feeling landscape",
+    image: "/images/destinations/east-greenland/iceberg-fjord-calm-water.jpeg",
+    imageAlt: "Iceberg floating in a calm fjord with still water reflections",
+    gallery: [
+      { src: "/images/destinations/east-greenland/glacier-calving-face.jpeg", alt: "Glacier calving face with deep blue ice" },
+      { src: "/images/destinations/east-greenland/fjord-mountain-reflection.jpeg", alt: "Mountain reflection in a glassy fjord" },
+      { src: "/images/destinations/east-greenland/rugged-peaks-wilderness.jpeg", alt: "Rugged peaks rising from the wilderness" },
+      { src: "/images/destinations/east-greenland/alpine-lake-solitude.jpeg", alt: "Alpine lake in perfect solitude surrounded by peaks" },
+      { src: "/images/destinations/east-greenland/kayak-coastal-waters.jpeg", alt: "Kayaking through coastal waters along a rocky shore" },
+    ],
   },
   {
     slug: "ortler-ski-tour",
